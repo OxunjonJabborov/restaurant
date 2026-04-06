@@ -73,7 +73,10 @@ def update_order_items(order_in: OrderItemUpdate, db = Depends(get_db)):
 def delete_order_items(detail: str, db = Depends(get_db)):
     stmt = select(OrderItem).where(OrderItem.id.contains(detail))
     order_items = db.scalars(stmt).all()
-    return order_items
+    
+    if not order_items:
+        raise HTTPException(status_code=404, detail=f"{detail} topilmadi")
+    return f"{detail} o'chirildi"
 
 @api_router.get("/orders", response_model=list[OrderOut])
 def get_orders(db = Depends(get_db)):
