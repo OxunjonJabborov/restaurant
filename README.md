@@ -1,0 +1,2 @@
+# restaurant
+Restoran tizimini avtomatlashtirish
