@@ -8,7 +8,7 @@ class Category(Base):
     id: Mapped[int]  = mapped_column(Integer, primary_key=True)
     name: Mapped[str] = mapped_column(String(length=50))
     
-    menu_items: Mapped['MenuItem'] = relationship(back_populates='category')
+    menu_items: Mapped[list['MenuItem']] = relationship(back_populates='category')
 
 
 class MenuItem(Base):
@@ -41,6 +41,6 @@ class Order(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     address: Mapped[str] = mapped_column(String(100))
     phone_number: Mapped[str] = mapped_column(String(length=13))
-    status: Mapped[str]  = mapped_column(String(20))
+    status: Mapped[str]  = mapped_column(String(50))
     
     order_items: Mapped['OrderItem'] = relationship(back_populates='order', cascade='all, delete-orphan')

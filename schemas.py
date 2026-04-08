@@ -26,7 +26,8 @@ class OrderItemBase(BaseModel):
     total: float = Field(ge=0)
 
 class OrderItemCreate(OrderItemBase):
-    pass
+    menu_item_id: int = Field(ge=1)
+    order_id: int = Field(ge=1)
 
 class OrderItemOut(OrderItemBase):
     id: int = Field(ge=1)
@@ -40,7 +41,7 @@ class OrderItemUpdate(OrderItemBase):
 class OrderBase(BaseModel):
     address: str = Field(max_length=100)
     phone_number: str = Field(max_length=13)
-    status: str = Field(max_length=20)
+    status: str = Field(max_length=50)
 
 class OrderCreate(OrderBase):
     pass

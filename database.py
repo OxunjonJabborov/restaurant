@@ -13,8 +13,11 @@ class Base(DeclarativeBase):
     pass
 
 def get_db():
+    db = Session()
     try:
-        db = Session()
         yield db
+    except Exception:
+        db.rollback()
+        raise
     finally:
         db.close()
